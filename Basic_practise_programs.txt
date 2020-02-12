@@ -1,0 +1,662 @@
+#  Given a string, return the sum and average of the digits that appear in the string, ignoring all other characters
+
+inputStr = "pynativepynvepynative"
+countDict = dict()
+for char in inputStr:
+  count = inputStr.count(char)
+  countDict[char]=count
+print(countDict)
+print(countDict.keys())
+print(countDict.values())
+print(countDict.items())
+
+***********************************************
+#  Given a string, return the sum and average of the digits that appear in the string, ignoring all other characters
+
+import re
+
+inputStr = "English = 78 Science = 83 Math = 68 History = 65"
+markList = [int(num) for num in re.findall(r'\b\d+\b', inputStr)]
+totalMarks = 0
+print(markList)
+for mark in markList:
+  totalMarks+=mark
+
+percentage = totalMarks/len(markList)  
+print("Total Marks is:", totalMarks, "Percentage is ", percentage)
+
+***********************************************
+#  Find all occurrences of “USA” in given string ignoring the case
+
+inputString = "Welcome to USA. usa awesome, isn't it?"
+substring = "USA"
+tempString = inputString.lower()
+count = tempString.count(substring.lower())
+print("The USA count is:", count)
+
+***********************************************
+#  Given a string input Count all lower case, upper case, digits, and special symbols
+
+def findDigitsCharsSymbols(inputString):
+  words = inputString.split()
+  charCount = 0
+  digitCount = 0
+  symbolCount = 0
+  for char in inputString:
+    if char.islower() or char.isupper():
+      charCount+=1
+    elif char.isnumeric():
+      digitCount+=1
+    else:
+      symbolCount+=1
+      
+  print("Chars = ", charCount, "Digits = ", digitCount, "Symbol = ", symbolCount)
+      
+inputString = "P@#yn26at^&i5ve"
+print("total counts of chars, digits,and symbols")
+print(findDigitsCharsSymbols(inputString))
+
+***********************************************
+#  arrange String characters such that lowercase letters should come first
+
+inputStr = "PyNaTive"
+words = inputStr.split()
+lower = []
+upper = []
+for char in inputStr:
+    if char.islower():
+        lower.append(char)
+    else:
+        upper.append(char)
+sortedString = ''.join(lower + upper)
+print("\n arranging characters giving precedence to lowercase letters:")
+print(sortedString)
+
+***********************************************
+#  Given 2 strings, s1 and s2, create a new string by appending s2 in the middle of s1
+
+def appendMiddle(s1, s2):
+  middleIndex = int(len(s1) /2)
+  print("Original Strings are", s1, s2)
+  print(s1[:middleIndex-1:])
+  middleThree = s1[:middleIndex-1:]+ s2 +s1[middleIndex-1:]
+  print("After appending new string in middle", middleThree)
+  
+appendMiddle("Chrisdem", "IamNewString")
+
+***********************************************
+#  Generate a random date between given start and end dates
+
+import random
+import time
+
+def getRandomDate(startDate, endDate ):
+    print("Printing random date between", startDate, " and ", endDate)
+    randomGenerator = random.random()
+    dateFormat = '%m/%d/%Y'
+
+    startTime = time.mktime(time.strptime(startDate, dateFormat))
+    endTime = time.mktime(time.strptime(endDate, dateFormat))
+
+    randomTime = startTime + randomGenerator * (endTime - startTime)
+    randomDate = time.strftime(dateFormat, time.localtime(randomTime))
+    return randomDate
+
+print ("Random Date = ", getRandomDate("1/1/2016", "12/12/2018"))
+
+
+***********************************************
+#Roll dice in such a way that every time you get the same number
+#  Generate  random String of length 5
+import random
+dice = [1, 2, 3, 4, 5, 6]
+print("Randomly selecting same number of a dice")
+for i in range(5):
+    random.seed(25)
+    print(random.choice(dice))
+***********************************************
+Generate a random Password which meets the following conditions
+Password length must be 10 characters long.
+It must contain at least 2 upper case letter, 2 digits, and 2 special symbols.
+#  Generate  random String of length 5
+
+import secrets
+print("Random integer numbers generated using secrets module ")
+
+#Getting systemRandom class instance out of secrets module
+secretsGenerator = secrets.SystemRandom()
+
+#random integer number uisng secrets
+randomNumber = secretsGenerator.randint(0,50)
+print("Secure random number is ", randomNumber)
+
+#random integer number within given range using secrets
+randomNumber = secretsGenerator.randrange(4, 40, 4)
+print("Secure random number within range is ", randomNumber)
+
+#Secure Random choice using secrets
+number_list = [6, 12, 18, 24, 30, 36, 42, 48, 54, 60]
+secure_choice = secretsGenerator.choice(number_list)
+print ("Secure random choice using secrets is ", secure_choice)
+
+
+***********************************************
+#  Generate  random String of length 5
+
+import random
+import string
+
+def randomString(stringLength):
+    """Generate a random string of 5 charcters"""
+    letters = string.ascii_letters
+    return ''.join(random.choice(letters) for i in range(stringLength))
+
+print ("Random String is ", randomString(5) )
+
+***********************************************
+#  Pick a random character from a given String
+import random
+
+name = 'pynative'
+char = random.choice(name)
+print("random char is ", char)
+
+***********************************************
+#  Generate 6 digit random secure OTP
+import secrets
+
+#Getting systemRandom class instance out of secrets module
+secretsGenerator = secrets.SystemRandom()
+
+print("Generating 6 digit random OTP")
+otp = secretsGenerator.randrange(100000, 999999)
+
+print("Secure random OTP is ", otp)
+
+***********************************************
+#  Generate a 100 Lottery tickets and pick two lucky tickets from it as a winner
+import random
+
+lottery_tickets_list = []
+print("creating 100 random lottery tickets")
+for i in range(100):
+    lottery_tickets_list.append(random.randrange(1000000000, 9999999999))
+
+winners = random.sample(lottery_tickets_list, 2)
+print("Lucky 2 lottery tickets are", winners)
+
+***********************************************
+import random
+
+print("Generating 3 random integer number between 100 and 999 divisible by 5")
+for num in range(3):
+    print(random.randrange(100, 999, 5), end=', ')
+
+***********************************************
+
+#  Remove duplicate from a list and create a tuple and find the minimum and maximum number
+sampleList = [87, 52, 44, 53, 54, 87, 52, 53]
+
+print("Original list", sampleList)
+
+sampleList = list(set(sampleList))
+print("unique list", sampleList)
+
+tuple = tuple(sampleList)
+print("tuple ", tuple)
+
+print("Minimum number is: ", min(tuple))
+print("Maximum number is: ", max(tuple))
+
+***********************************************
+
+***********************************************
+# Given a dictionary get all values from the dictionary and add it in a list but don’t add duplicates
+
+speed  ={'jan':47, 'feb':52, 'march':47, 'April':44, 'May':52, 'June':53,
+          'july':54, 'Aug':44, 'Sept':54} 
+
+print("Dictionary's values - ", speed.values())
+
+speedList = list()
+for item in speed.values():
+  if item not in speedList:
+    speedList.append(item)
+print("unique list", speedList)
+
+
+***********************************************
+# Iterate a given list and Check if a given element already exists in a dictionary as a key’s value # if not delete it from the list
+
+rollNumber  = [47, 64, 69, 37, 76, 83, 95, 97]
+sampleDict  ={'Jhon':47, 'Emma':69, 'Kelly':76, 'Jason':97} 
+
+print("List -", rollNumber)
+print("Dictionary - ", sampleDict)
+
+rollNumber[:] = [item for item in rollNumber if item in sampleDict.values()]
+print("after removing unwanted elemnts from list ", rollNumber)
+
+
+***********************************************
+# Given a following two sets find the intersection and remove those elements from the first set
+
+firstSet  = {23, 42, 65, 57, 78, 83, 29}
+secondSet = {57, 83, 29, 67, 73, 43, 48}
+
+print("First Set ", firstSet)
+print("Second Set ", secondSet)
+
+intersection = firstSet.intersection(secondSet)
+print("Intersection is ", intersection)
+for item in intersection:
+  firstSet.remove(item)
+
+print("First Set after removing common element ", firstSet)
+
+***********************************************
+# Given a two list of equal size create a set such that it shows the element from both lists in the pair
+
+firstList = [2, 3, 4, 5, 6, 7, 8]
+print("First List ", firstList)
+
+secondList = [4, 9, 16, 25, 36, 49, 64]
+print("Second List ", secondList)
+
+result = zip(firstList, secondList)
+resultSet = set(result)
+print(resultSet)
+
+***********************************************
+# Given a list iterate it and count the occurrence of each element and create a dictionary to show the count of each element
+
+sampleList = [11, 45, 8, 11, 23, 45, 23, 45, 89]
+print("Original list ", sampleList)
+
+countDict = dict()
+for item in sampleList:
+  if(item in countDict):
+    countDict[item] += 1
+  else:
+    countDict[item] = 1
+  
+print("Printing count of each item  ",countDict)
+
+***********************************************
+# List operations
+
+sampleList = [34, 54, 67, 89, 11, 43, 94]
+
+print("Original list ", sampleList)
+element = sampleList.pop(4)
+print("List After removing element at index 4 ", sampleList)
+
+sampleList.insert(2, element)
+print("List after Adding element at index 2 ", sampleList)
+
+sampleList.append(element)
+print("List after Adding element at last ", sampleList)
+
+***********************************************
+# Given a two list. Create a third list by picking an odd-index element from the first list and even index elements from second.
+listOne = [3, 6, 9, 12, 15, 18, 21]
+listTwo = [4, 8, 12, 16, 20, 24, 28]
+listThree = list()
+
+oddElements = listOne[1::2]
+print("Element at odd-index positions from list one")
+print(oddElements)
+
+EvenElement = listTwo[0::2]
+print("Element at even-index positions from list two")
+print(EvenElement)
+
+print("Printing Final third list")
+listThree.extend(oddElements)
+listThree.extend(EvenElement)
+print(listThree)
+
+***********************************************
+# Return multiple values from a function
+def multiplication_Division(num1, num2):
+  return num1*num2, num2/num1
+
+product, division = multiplication_Division(10, 20)
+print("Product", product, "Division", division)
+
+***********************************************
+# Format a decimal to always show 2 decimal places
+number= 88.2345
+print('{0:.2f}'.format(number))
+
+***********************************************
+# Convert hex string, String to int
+hexNumber = "0xfde"
+stringNumber="34"
+
+print("Hext toint", int(hexNumber, 0))
+print("String to int", int(stringNumber, 0))
+
+***********************************************
+# Convert two lists into a dictionary
+
+ItemId = [54, 65, 76]
+names = ["Hard Disk", "Laptop", "RAM"]
+
+itemDictionary = dict(zip(ItemId, names))
+
+print(itemDictionary)
+
+***********************************************
+# Merge two dictionaries in a single expression
+
+currentEmployee = {1: 'Scott', 2: "Eric", 3:"Kelly"}
+formerEmployee  = {2: 'Eric', 4: "Emma"}
+
+allEmployee = {**currentEmployee, **formerEmployee}
+print(allEmployee)
+
+# also
+currentEmployee = {1: 'Scott', 2: "Eric", 3:"Kelly"}
+formerEmployee  = {2: 'Eric', 4: "Emma"}
+
+def merge_dicts(dictOne, dictTwo):
+    dictThree = dictOne.copy()
+    dictThree.update(dictTwo)
+    return dictThree
+    
+print(merge_dicts(currentEmployee, formerEmployee))
+
+***********************************************
+# Use enumerate
+listOne = [123, 345, 456, 23]
+print("Using enumerate")
+for index, element in enumerate(listOne): 
+    print("Index [", index,"]", "Value", element)
+
+***********************************************
+# Convert Byte to String
+byteVar = b"pynative"
+str = str(byteVar.decode("utf-8"))
+print("Byte to string is" , str )
+
+***********************************************
+# check if all elements in a list are unique
+
+def isUnique(item):
+    tempSet = set()
+    return not any(i in tempSet or tempSet.add(i) for i in item)
+
+listOne = [123, 345, 456, 23, 567]
+print("All List elemtnts are Unique ", isUnique(listOne))
+
+listTwo = [123, 345, 567, 23, 567]
+print("All List elemtnts are Unique ", isUnique(listTwo))
+
+***********************************************
+# How to efficiently compare two unordered lists
+from collections import Counter
+
+one = [33, 22, 11, 44, 55]
+two = [22, 11, 44, 55, 33]
+
+print("is two list are b equal", Counter(one) == Counter(two))
+
+***********************************************
+# Find if all elements in a list are identical
+
+listOne = [20, 20, 20, 20]
+print("All element are duplicate in listOne", listOne.count(listOne[0]) == len(listOne))
+
+listTwo = [20, 20, 20, 50]
+print("All element are duplicate in listTwo", listTwo.count(listTwo[0]) == len(listTwo))
+
+***********************************************
+#Removing duplicates items from a list
+listNumbers = [20, 22, 24, 26, 28, 28, 20, 30, 24]
+print("Original= ", listNumbers)
+
+listNumbers = list(set(listNumbers))
+print("After removing duplicate= ", listNumbers)
+
+***********************************************
+
+#Calculate memory is being used by an object in Python
+import sys
+
+list1 = ['Scott', 'Eric', 'Kelly', 'Emma', 'Smith']
+print("size of list = ",sys.getsizeof(list1))
+
+name = 'pynative.com'
+print("size of name = ",sys.getsizeof(name))
+
+***********************************************
+#Get the difference between the two Lists
+list1 = ['Scott', 'Eric', 'Kelly', 'Emma', 'Smith']
+list2 = ['Scott', 'Eric', 'Kelly']
+
+set1 = set(list1)
+set2 = set(list2)
+
+list3 = list(set1.symmetric_difference(set2))
+print(list3)
+
+***********************************************
+#calculate the time taken to complete the execution of your code
+import time
+
+startTime = time.time()
+
+# write your code or functions calls
+time.sleep(5)
+endTime = time.time()
+totalTime = endTime - startTime
+
+print("Total time required to execute code is= ", totalTime)
+***********************************************
+# Palindrom program
+
+num=int(input("Enter a number:"))
+temp=num
+rev=0
+while(num>0):
+    dig=num%10
+    rev=rev*10+dig
+    num=num//10
+if(temp==rev):
+    print("The number is palindrome!")
+else:
+    print("Not a palindrome!")
+***********************************************
+# Merge Sort in Python
+
+def mergeSort(nlist):
+    print("Splitting ",nlist)
+    if len(nlist)>1:
+        mid = len(nlist)//2
+        lefthalf = nlist[:mid]
+        righthalf = nlist[mid:]
+ 
+        mergeSort(lefthalf)
+        mergeSort(righthalf)
+        i=j=k=0      
+        while i < len(lefthalf) and j < len(righthalf):
+            if lefthalf[i] < righthalf[j]:
+                nlist[k]=lefthalf[i]
+                i=i+1
+            else:
+                nlist[k]=righthalf[j]
+                j=j+1
+            k=k+1
+ 
+        while i < len(lefthalf):
+            nlist[k]=lefthalf[i]
+            i=i+1
+            k=k+1
+ 
+        while j < len(righthalf):
+            nlist[k]=righthalf[j]
+            j=j+1
+            k=k+1
+    print("Merging ",nlist)
+ 
+nlist = [3,1,4,1,5,9,2,6,5,4]
+mergeSort(nlist)
+print(nlist)
+***********************************************
+# Python Program to Reverse a Number using Recursion
+ 
+Num = int(input("Please Enter any Number: "))
+ 
+Result = 0
+def Result_Int(Num):
+    global Result
+    if(Num > 0):
+        Reminder = Num %10
+        Result = (Result *10) + Reminder
+        Result_Int(Num //10)
+    return Result
+ 
+Result = Result_Int(Num)
+print("n Reverse of entered number is = %d" %Result)
+***********************************************
+# leap year
+
+year = int(input("Enter a year: "))  
+ #Getting value for user 
+if (year % 4) == 0:  
+   if (year % 100) == 0:  
+       if (year % 400) == 0:  
+           print("{0} is a leap year".format(year))  
+       else:  
+           print("{0} is not a leap year".format(year))  
+   else:  
+       print("{0} is a leap year".format(year))
+       # Number will be printed as leap year
+else:  
+   print("{0} is not a leap year".format(year))
+   #Number will be printed as Non Leap Year
+***********************************************
+# Fibonacci
+
+nterms = int(input("Enter the terms? "))  # take input from the user
+
+def FibRecursion(n):  
+   if n <= 1:  
+       return n  
+   else:  
+       return(FibRecursion(n-1) + FibRecursion(n-2))  
+   
+  
+if nterms <= 0:  # check if the number is valid 
+   print("Please enter a positive integer")  
+else:  
+   print("Fibonacci sequence:")  
+   for i in range(nterms):  
+       print(FibRecursion(i))
+***********************************************
+# convert list to string
+mylist =["edureka","python","blog"]
+print(",".join(mylist))
+mylist =["edureka","python","blog"]
+print("\n".join(mylist))
+***********************************************
+# Python code to demonstrate naive 
+# method to compute gcd ( recursion ) 
+def hcfnaive(a,b): 
+    if(b==0): 
+        return a 
+    else: 
+        return hcfnaive(b,a%b) 
+a = 60
+b= 48
+# prints 12 
+print ("The gcd of 60 and 48 is : ",end="") 
+print (hcfnaive(60,48))
+***********************************************
+# check prime no.
+num = 12
+if num > 1:
+    for i in range(2, num//2):
+        if (num % i) == 0:
+            print(num, "is not a prime number")
+            break
+        else:
+            print(num, "is a prime number")
+else:
+    print(num, "is not a prime number")
+
+
+***********************************************
+# get IP address
+import subprocess
+import re
+
+def get_interfaces():
+    output = subprocess.check_output("ipconfig /all")
+
+    lines = output.splitlines()
+    lines = filter(lambda x: x, lines)
+
+    ip_address = ''
+    mac_address = ''
+    name = ''
+
+    for line in lines:
+        # -------------
+        # Interface Name
+
+        is_interface_name = re.match(r'^[a-zA-Z0-9].*:$', line)
+        if is_interface_name:
+            
+            # Check if there's previews values, if so - yield them
+            if name and ip_address and mac_address:
+                yield {
+                    "ip_address": ip_address,
+                    "mac_address": mac_address,
+                    "name": name,
+                    }
+
+            ip_address = ''
+            mac_address = ''
+            name = line.rstrip(':')
+
+        line = line.strip().lower()
+
+        if ':' not in line:
+            continue
+
+        value = line.split(':')[-1]
+        value = value.strip()
+
+        # -------------
+        # IP Address
+
+        is_ip_address = not ip_address and re.match(r'ipv4 address|autoconfiguration ipv4 address|ip address', line)
+
+        if is_ip_address:
+            ip_address = value
+            ip_address = ip_address.replace('(preferred)', '')
+            ip_address = ip_address.strip()
+
+        # -------------
+        # MAC Address
+
+        is_mac_address = not ip_address and re.match(r'physical address', line)
+
+        if is_mac_address:
+            mac_address = value
+            mac_address = mac_address.replace('-', ':')
+            mac_address = mac_address.strip()
+
+    if name and ip_address and mac_address:
+        yield {
+            "ip_address": ip_address,
+            "mac_address": mac_address,
+            "name": name,
+            }
+
+
+if __name__ == '__main__':
+    for interface in get_interfaces():
+        print interface
