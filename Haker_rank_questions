@@ -1,0 +1,84 @@
+# Program 1
+from collections import Counter
+list1 = [1,1,2,3,4,4,5,5,5,6]
+
+test_dict = Counter(list1)
+count = 0
+for i in test_dict.values():
+    if i >=2:
+        count += 1
+
+print('Total no. of repetitive items in the list are: {}'.format(count))
+
+# Program 2
+def alternating_strs():
+    string1 = "ABC"     # or vwxyz
+    string2 = "vwxyz"    # or ABC
+    min_length = min(len(string1), len(string2))
+    return_string = ''
+    global t
+    for count in range(0, min_length):
+        char1 = string1[count]
+        char2 = string2[count]
+        return_string += '{0}{1}'.format(char1, char2)
+        t = count
+    if  (len(string1) > len(string2)):
+        return_string += string1[t+1:]
+    else:
+        return_string += string2[t+1:]
+    print(return_string)
+   
+alternating_strs()
+
+# Program 3
+
+class Animal():
+    def __init__(self, color):
+        self.color = color
+       
+    def makesound(self):
+        print("No sound")
+
+class Dog(Animal):
+    def makesound(self):
+        print("Bark...")
+       
+
+class Cat(Animal):
+    def makesound(self):
+        print("Mewooo...")
+
+dog1 = Dog("Brown")
+print(dog1.color)
+dog1.makesound()
+
+
+cat1 = Cat("Black")
+print(cat1.color)
+cat1.makesound()
+
+##########################################
+
+
+##########################################
+ 
+ 
+##########################################
+
+
+##########################################
+
+
+##########################################
+
+
+##########################################
+
+
+##########################################
+
+
+##########################################
+
+
+##########################################
